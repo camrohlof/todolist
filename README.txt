@@ -1,0 +1,1 @@
+Basic CRUD CLI tool using rust
