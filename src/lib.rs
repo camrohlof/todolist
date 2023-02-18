@@ -31,7 +31,6 @@ pub enum Commands {
 
 #[derive(Debug)]
 struct TodoItem {
-    id: u32,
     name: String,
     details: String,
     completed: bool,
@@ -89,7 +88,6 @@ fn remove_item(connection: Connection, name: String) {
     let item = statement
         .query_row([&name], |row| {
             Ok(TodoItem {
-                id: row.get(0)?,
                 name: row.get(1)?,
                 details: row.get(2)?,
                 completed: row.get(3)?,
@@ -118,7 +116,6 @@ fn update_item(connection: Connection, name: String, details: String) {
     let item = statement
         .query_row([&name], |row| {
             Ok(TodoItem {
-                id: row.get(0)?,
                 name: row.get(1)?,
                 details: row.get(2)?,
                 completed: row.get(3)?,
@@ -146,7 +143,6 @@ fn list_items(connection: Connection) {
     let results = statement
         .query_map([], |row| {
             Ok(TodoItem {
-                id: row.get(0)?,
                 name: row.get(1)?,
                 details: row.get(2)?,
                 completed: row.get(3)?,
